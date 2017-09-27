@@ -1,0 +1,14 @@
+<ul class="list-group" *ngFor="let todo of todos">
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon">
+            <input type="checkbox" aria-label="..." [checked]="todo.completed">
+          </span>
+          <p>{{ todo.title }}</p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,39 @@
+<div class="row banner"></div>
+<div class="row">
+  <div class="pull-left">
+    <img src="http://lorempixel.com/200/200/people/1/" alt="user.username" class="avatar">
+  </div>
+</div>
+<div class="container-fluid" *ngIf="user">
+  <div class="col-md-3 col-xs-12">
+    <div>
+      <h3>{{ user.name }}</h3>
+      <h5>@{{ user.username }}</h5>
+      <p>I work at {{ user.company.name }} which is a {{ user.company.catchPhrase }} that {{ user.company.bs }}</p>
+      <div>
+        <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+        <span>{{ user.address.city }}</span>
+      </div>
+      <div>
+        <span><i class="fa fa-link" aria-hidden="true"></i></span>
+        <span>{{ user.website }}</span>
+      </div>
+      <div>
+        <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
+        <span>{{ user.phone }}</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-9 col-xs-12">
+
+    <ul class="nav nav-tabs">
+      <li role="presentation" routerLinkActive="active"><a [routerLink]="['todos']" [queryParams]="{ userId: user.id}">Todos</a></li>
+      <li role="presentation" routerLinkActive="active"><a [routerLink]="['posts']" [queryParams]="{ userId: user.id}">Posts</a></li>
+      <li role="presentation" routerLinkActive="active"><a [routerLink]="['albums']" [queryParams]="{ userId: user.id}">Albums</a></li>
+    </ul>
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
