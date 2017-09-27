@@ -1,8 +1,45 @@
-.avatar {
+.banner {
+  background-color: #F62459;
+  height: 250px;
+  position: relative;
+}
+
+.banner img {
+  position: absolute;
+  left: 7%;
+  top: 90px;
   border-radius: 50%;
 }
 
-.banner {
-  background-color: #F62459;
-  height: 175px;
+.user-profile-wrapper {
+  background-color: #e6ecf0;
+  padding: 30px;
+}
+
+.user-profile-wrapper .nav-tabs > li > a {
+  color: #000000;
+  font-weight: bolder;
+}
+
+.user-profile-wrapper .user-info-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.user-profile-wrapper .user-info-list li {
+  padding: 10px 0;
+}
+
+.user-profile-wrapper .user-info-list li span:last-child {
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.user-profile-wrapper .user-info-list li span i {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.user-profile-wrapper .user-info-list li:nth-child(even) span i {
+  font-size: 14px;
 }

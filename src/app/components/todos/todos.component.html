@@ -1,14 +1,6 @@
-<ul class="list-group" *ngFor="let todo of todos">
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="input-group">
-          <span class="input-group-addon">
-            <input type="checkbox" aria-label="..." [checked]="todo.completed">
-          </span>
-          <p>{{ todo.title }}</p>
-        </div>
-      </div>
-    </div>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let todo of todos" (click)="todo.completed = !todo.completed">
+    <s *ngIf="todo.completed; else elseBlock">{{ todo.title }}</s>
+    <ng-template #elseBlock>{{ todo.title }}</ng-template>
   </li>
 </ul>
