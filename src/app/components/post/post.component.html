@@ -1,3 +1,22 @@
-<p>
-  post works!
-</p>
+<h1 md-dialog-title>{{ post?.title }}</h1>
+<div md-dialog-content>
+  <p>{{ post?.body }}</p>
+</div>
+<div md-dialog-content *ngIf="!isLoading; else elseBlock">
+  <md-list>
+    <md-list-item *ngFor="let comment of comments">
+      <img mdListAvatar [src]="'http://lorempixel.com/200/200/people/' + comment.id + '/'" [alt]="comment.email">
+      <h4 mdLine> {{ comment.email }} </h4>
+      <h5 mdLine> {{ comment.name }} </h5>
+      <p mdLine> {{ comment.body }} </p>
+      <md-divider></md-divider>      
+    </md-list-item>
+  </md-list>
+</div>
+<ng-template #elseBlock>
+  <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
+</ng-template>
+<div md-dialog-actions>
+  <button md-button [md-dialog-close]="post" tabindex="2">Ok</button>
+  <button md-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
+</div>

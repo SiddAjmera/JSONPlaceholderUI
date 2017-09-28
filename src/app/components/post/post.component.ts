@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
+
+import { IComment } from './../../models/comment';
+import { IPost } from './../../models/post';
+import { PostService } from './../../services/post/post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  public comments: IComment[];
+  public isLoading: boolean = true;
+
+  constructor(
+    public dialogRef: MdDialogRef<PostComponent>,
+    @Inject(MD_DIALOG_DATA) public post: IPost,
+    private _postService: PostService
+  ) { }
 
   ngOnInit() {
+    this._postService.getPostComments(this.post.id)
+        .subscribe((comments: IComment[]) => {
+          this.comments = comments;
+          this.isLoading = false;
+        });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

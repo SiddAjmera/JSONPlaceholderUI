@@ -1,6 +1,9 @@
-<ul class="list-group">
+<ul class="list-group" *ngIf="!isLoading; else elseBlock">
   <li class="list-group-item" *ngFor="let todo of todos" (click)="todo.completed = !todo.completed">
     <s *ngIf="todo.completed; else elseBlock">{{ todo.title }}</s>
     <ng-template #elseBlock>{{ todo.title }}</ng-template>
   </li>
 </ul>
+<ng-template #elseBlock>
+  <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
+</ng-template>

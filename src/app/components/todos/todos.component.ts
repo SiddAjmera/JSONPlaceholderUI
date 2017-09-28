@@ -12,6 +12,7 @@ import { TodoService } from './../../services/todo/todo.service';
 export class TodosComponent implements OnInit {
 
   public todos: ITodo[];
+  public isLoading: boolean = true;
 
   constructor(private _todoService: TodoService, private _route: ActivatedRoute) { }
 
@@ -21,6 +22,7 @@ export class TodosComponent implements OnInit {
       this._todoService.getUserTodos(userId)
           .subscribe((todos: ITodo[]) => {
             this.todos = todos;
+            this.isLoading = false;
           });
     });
   }

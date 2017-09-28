@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
@@ -7,6 +8,7 @@ import { AlbumsComponent } from './components/albums/albums.component';
 import { AlbumService } from './services/album/album.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { MaterialModule } from './material/material.module';
 import { UserComponent } from './components/user/user.component';
 import { UserService } from './services/user/user.service';
 import { TodosComponent } from './components/todos/todos.component';
@@ -27,8 +29,10 @@ import { PostService } from './services/post/post.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [
     AlbumService, 

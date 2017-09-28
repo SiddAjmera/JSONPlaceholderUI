@@ -1,23 +1,8 @@
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let album of albums">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">{{ album.title }}</div>
-          <div class="panel-body">
-            
-            <div class="row">
-              <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail">
-                  <img src="..." alt="...">
-                </a>
-              </div>
-              ...
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
+<ul class="list-group" *ngIf="!isLoading; else elseBlock">
+  <li class="list-group-item" *ngFor="let album of albums" (click)="openDialog(album)">
+    <a href="#">{{ album.title }}</a>
   </li>
 </ul>
+<ng-template #elseBlock>
+  <i class="fa fa-spinner fa-spin fa-5x" aria-hidden="true"></i>
+</ng-template>
