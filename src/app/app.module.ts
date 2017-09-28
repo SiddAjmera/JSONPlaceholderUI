@@ -16,6 +16,7 @@ import { TodoService } from './services/todo/todo.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { PostService } from './services/post/post.service';
+import { AppendorPipe } from './pipes/appendor/appendor.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PostService } from './services/post/post.service';
     AlbumsComponent,
     PostsComponent,
     PostComponent,
-    AlbumComponent
+    AlbumComponent,
+    AppendorPipe
   ],
   imports: [
     BrowserModule,

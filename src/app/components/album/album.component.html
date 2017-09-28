@@ -1,9 +1,5 @@
-<div md-dialog-content>
-  <md-grid-list cols="4" rowHeight="4:1">
-    <md-grid-tile *ngFor="let photo of photos">
-        <img mdListAvatar 
-            [src]="photo.thumbnailUrl" 
-            [alt]="photo.title">
-    </md-grid-tile>
-  </md-grid-list>
+<div class="col-lg-12">
+  <div class="col-lg-3" *ngFor="let photo of photos">
+    <img [src]="photo.thumbnailUrl" [alt]="photo.title" class="col-lg-12">
+  </div>
 </div>

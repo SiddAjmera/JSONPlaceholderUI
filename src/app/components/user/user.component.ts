@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Event, NavigationEnd } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -13,8 +13,16 @@ import { UserService } from './../../services/user/user.service';
 export class UserComponent implements OnInit {
 
   public user: IUser;
+  public routeLinks:any[];
+  public activeLinkIndex: number = 0;
 
-  constructor(private _userService: UserService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
+  constructor(private _userService: UserService, private route: ActivatedRoute, private sanitizer: DomSanitizer) { 
+    this.routeLinks = [
+      { label: 'TODOS', link: 'todos' },
+      { label: 'POSTS', link: 'posts' },
+      { label: 'ALBUMS', link: 'albums' }
+    ];
+  }
 
   public ngOnInit() {
     this.route.params.subscribe((params) => {

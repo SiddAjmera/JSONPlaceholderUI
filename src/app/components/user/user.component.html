@@ -1,55 +1,48 @@
-<div class="row banner">
-  <img src="http://lorempixel.com/200/200/people/1/" alt="user.username">
-</div>
-<div class="row">
-  <div class="pull-left">
-
-  </div>
-</div>
+<!-- <div class="row banner"></div> -->
 <div class="container-fluid user-profile-wrapper" *ngIf="user">
   <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
     <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-      <h3>{{ user.name }}</h3>
-      <h5>@{{ user.username }}</h5>
-      <p>I work at {{ user.company.name }} which is a {{ user.company.catchPhrase }} that {{ user.company.bs }}</p>
-      <ul class="user-info-list">
-        <li>
-          <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+      <md-card>
+        <img md-card-image [src]="'http://lorempixel.com/200/200/people/' + user?.id + '/'" [alt]="user.username">
+        <md-card-title>{{ user.name }}</md-card-title>
+        <md-card-subtitle>{{ user.username }}</md-card-subtitle>
+        <md-card-content>I work at {{ user.company.name }} which is a {{ user.company.catchPhrase }} that {{ user.company.bs }}</md-card-content>
+        <md-card-content>
+          <md-icon>location_on</md-icon>
           <span>{{ user.address.city }}</span>
-        </li>
-        <li>
-          <span><i class="fa fa-link" aria-hidden="true"></i></span>
-          <span>{{ user.website }}</span>
-        </li>
-        <li>
-          <span><i class="fa fa-mobile" aria-hidden="true"></i></span>
-          <span>{{ user.phone }}</span>
-        </li>
-        <li>
-          <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
-          <span>{{ user.email }}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-      <ul class="user-info-list">
-        <li>
+        </md-card-content>
+        <md-card-content>
+          <md-icon>web</md-icon>
+          <a [href]="user.website">{{ user.website }}</a>
+        </md-card-content>
+        <md-card-content>
+          <md-icon>contact_phone</md-icon>
+          <a [href]="user.phone | appendor: 'tel://': 'pre'">{{ user.phone }}</a>
+        </md-card-content>
+        <md-card-content>
+          <md-icon>email</md-icon>
+          <a [href]="user.email | appendor: 'mailto://': 'pre'">{{ user.email }}</a>
+        </md-card-content>
+        <md-card-footer>
           <iframe width="100%" height="300" frameborder="1" style="border:0" [src]="mapURL">
           </iframe>
-        </li>
-      </ul>
+        </md-card-footer>
+      </md-card>
     </div>
-  </div>  
+  </div>
 
   <div class="col-lg-9 col-md-9 col-xs-12">
-
-    <ul class="nav nav-tabs">
-      <li role="presentation" routerLinkActive="active"><a [routerLink]="['todos']" [queryParams]="{ userId: user.id}">Todos</a></li>
-      <li role="presentation" routerLinkActive="active"><a [routerLink]="['posts']" [queryParams]="{ userId: user.id}">Posts</a></li>
-      <li role="presentation" routerLinkActive="active"><a [routerLink]="['albums']" [queryParams]="{ userId: user.id}">Albums</a></li>
-    </ul>
-
+    <nav md-tab-nav-bar>
+      <a md-tab-link 
+         *ngFor="let routeLink of routeLinks; let i = index" 
+         [routerLink]="routeLink.link" 
+         [active]="activeLinkIndex === i"
+         [queryParams]="{ userId: user.id}" 
+         (click)="activeLinkIndex = i"
+         class="tab">
+         {{routeLink.label}}
+       </a>
+    </nav>
     <router-outlet></router-outlet>
-
   </div>
 </div>
