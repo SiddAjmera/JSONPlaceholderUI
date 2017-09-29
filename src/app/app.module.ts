@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 
@@ -17,6 +18,8 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { PostService } from './services/post/post.service';
 import { AppendorPipe } from './pipes/appendor/appendor.pipe';
+import { PhotoComponent } from './components/photo/photo.component';
+import { SafeUrlPipe } from './pipes/safe-url/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -27,11 +30,14 @@ import { AppendorPipe } from './pipes/appendor/appendor.pipe';
     PostsComponent,
     PostComponent,
     AlbumComponent,
-    AppendorPipe
+    AppendorPipe,
+    PhotoComponent,
+    SafeUrlPipe
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     HttpModule,
     AppRoutingModule,
     MaterialModule
@@ -42,6 +48,7 @@ import { AppendorPipe } from './pipes/appendor/appendor.pipe';
     TodoService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PhotoComponent]
 })
 export class AppModule { }

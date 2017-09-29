@@ -34,7 +34,11 @@ export class AlbumsComponent implements OnInit {
   }
 
   public openDialog(selectedAlbum: IAlbum): void {
-    let dialogRef = this.dialog.open(AlbumComponent, { data: selectedAlbum });
+    let dialogRef = this.dialog.open(AlbumComponent, { 
+      width: '80vw',
+      height:'60vw',
+      data: selectedAlbum
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

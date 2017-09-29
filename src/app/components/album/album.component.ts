@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { AlbumService } from './../../services/album/album.service';
 import { IAlbum } from './../../models/album';
 import { IPhoto } from './../../models/photo';
+import { PhotoComponent } from './../photo/photo.component';
 
 @Component({
   selector: 'app-album',
@@ -18,10 +19,11 @@ export class AlbumComponent implements OnInit {
   constructor(
     public dialogRef: MdDialogRef<AlbumComponent>,
     @Inject(MD_DIALOG_DATA) public album: IAlbum,
-    private _albumService: AlbumService
+    private _albumService: AlbumService,
+    public dialog: MdDialog
   ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this._albumService.getAlbumPhotos(this.album.id)
         .subscribe((photos: IPhoto[]) => {
           this.photos = photos;
@@ -29,8 +31,15 @@ export class AlbumComponent implements OnInit {
         });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  public openDialog(selectedPhoto: IPhoto): void {
+    let secondDialogRef = this.dialog.open(PhotoComponent, { 
+      width: '55vw',
+      data: selectedPhoto
+    });
+
+    secondDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
